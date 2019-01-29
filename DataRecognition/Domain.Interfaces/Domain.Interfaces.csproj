@@ -44,7 +44,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataRecognition.Domain.Model\Domain.Model.csproj">
+    <ProjectReference Include="..\Domain.Model\Domain.Model.csproj">
       <Project>{92d9936e-e938-4774-8bb2-7f9c5db4538a}</Project>
       <Name>Domain.Model</Name>
     </ProjectReference>
