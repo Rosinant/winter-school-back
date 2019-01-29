@@ -12,6 +12,7 @@ namespace DataService
 {
     public class RepositoryModule : Module
     {
+        //Модуль используется для внедрения зависимостей
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType(typeof(PassportRepository))

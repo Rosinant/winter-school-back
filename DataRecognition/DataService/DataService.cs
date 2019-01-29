@@ -29,8 +29,8 @@ namespace DataService
 
         public Task SavePassportAsync(Passport passport)
         {
-            _repository.Create(passport);
-            _repository.Save();
+            _repository.CreateAsync(passport);
+            _repository.SaveAsync();
             return Task.FromResult(true);
         }
 
@@ -41,27 +41,6 @@ namespace DataService
         protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
         {
             return new ServiceInstanceListener[0];
-        }
-
-        /// <summary>
-        /// Это главная точка входа для экземпляра вашей службы.
-        /// </summary>
-        /// <param name="cancellationToken">Отменяется, когда Service Fabric нужно завершить работу этого экземпляра службы.</param>
-        protected override async Task RunAsync(CancellationToken cancellationToken)
-        {
-            // TODO: замените приведенный ниже пример кода на свою логику 
-            //       или удалите это переопределение RunAsync, если оно не нужно для вашей службы.
-
-            long iterations = 0;
-
-            while (true)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-
-                ServiceEventSource.Current.ServiceMessage(this.Context, "Working-{0}", ++iterations);
-
-                await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
-            }
         }
     }
 }

@@ -12,6 +12,7 @@ namespace DataService.Client
 {
     public class Program
     {
+        //Тест. Nunit вылетает, возможно плохо взаимодействует с fabric service
         static void Main(string[] args)
         {
             var passport = new Passport()

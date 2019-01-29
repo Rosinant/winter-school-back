@@ -39,7 +39,7 @@ namespace DataService.Tests
 
             var calculatorClient = ServiceProxy.Create<IDataService>(new Uri("fabric:/DataServiceApplication/DataService"));
 
-            calculatorClient.SavePassport(passport);
+            calculatorClient.SavePassportAsync(passport);
 
             Assert.Pass();
 
