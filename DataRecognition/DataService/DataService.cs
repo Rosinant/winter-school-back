@@ -4,6 +4,9 @@ using System.Fabric;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using DataRecognition.Domain.Model;
+using DataService.Interfaces;
+using Domain.Logic;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 
@@ -12,11 +15,20 @@ namespace DataService
     /// <summary>
     /// Среда выполнения Service Fabric создает экземпляр этого класса для каждого экземпляра службы.
     /// </summary>
-    internal sealed class DataService : StatelessService
+    internal sealed class DataService : StatelessService, IDataService
     {
         public DataService(StatelessServiceContext context)
             : base(context)
         { }
+
+        public void SavePassport(Passport passport)
+        {
+            using (var context = new PassportRepository())
+            {
+                context.Create(passport);
+                context.Save();
+            }
+        }
 
         /// <summary>
         /// Необязательное переопределение для создания прослушивателей (например, TCP, HTTP) для этой реплики службы, чтобы обрабатывать запросы клиентов или пользователей.
