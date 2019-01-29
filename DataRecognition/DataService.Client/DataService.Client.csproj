@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F050B7E9-7D09-4D32-9834-D79FF8EC0A51}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataService.Interfaces</RootNamespace>
-    <AssemblyName>DataService.Interfaces</AssemblyName>
+    <ProjectGuid>{148E0D1E-AC78-4AEA-8FFF-4A1CC2001876}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DataService.Client</RootNamespace>
+    <AssemblyName>DataService.Client</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -87,15 +89,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDataService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataService.Interfaces\DataService.Interfaces.csproj">
+      <Project>{F050B7E9-7D09-4D32-9834-D79FF8EC0A51}</Project>
+      <Name>DataService.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain.Model\Domain.Model.csproj">
-      <Project>{92d9936e-e938-4774-8bb2-7f9c5db4538a}</Project>
+      <Project>{92D9936E-E938-4774-8BB2-7F9C5DB4538A}</Project>
       <Name>Domain.Model</Name>
     </ProjectReference>
   </ItemGroup>

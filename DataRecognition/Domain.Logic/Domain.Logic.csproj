@@ -52,13 +52,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataRecognition.Domain.Model\Domain.Model.csproj">
-      <Project>{92d9936e-e938-4774-8bb2-7f9c5db4538a}</Project>
-      <Name>Domain.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Domain.Interfaces\Domain.Interfaces.csproj">
       <Project>{6af9ed10-61d0-4864-b3e1-1ecd24360249}</Project>
       <Name>Domain.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain.Model\Domain.Model.csproj">
+      <Project>{92d9936e-e938-4774-8bb2-7f9c5db4538a}</Project>
+      <Name>Domain.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

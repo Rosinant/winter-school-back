@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataRecognition.Domain.Model;
 using Domain.Interfaces;
+using Domain.Model;
 
 namespace Domain.Logic
 {
@@ -17,14 +17,14 @@ namespace Domain.Logic
             this.db = new DataContext();
         }
 
-        public void Create(Passport passport)
+        public Task CreateAsync(Passport passport)
         {
-            db.Passports.Add(passport);
+            return Task.FromResult(db.Passports.Add(passport));
         }
 
-        public void Save()
+        public Task SaveAsync()
         {
-            db.SaveChanges();
+            return Task.FromResult(db.SaveChanges());
         }
 
         private bool disposed = false;

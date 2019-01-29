@@ -4,6 +4,9 @@ using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Runtime;
+using Autofac;
+using Autofac.Integration.ServiceFabric;
+using Domain.Logic;
 
 namespace DataService
 {
@@ -21,11 +24,18 @@ namespace DataService
                 // Когда Service Fabric создает экземпляр этого типа службы,
                 // в этом хост-процессе создается экземпляр класса.
 
-                ServiceRuntime.RegisterServiceAsync("DataServiceType",
-                    context => new DataService(context)).GetAwaiter().GetResult();
+                //DI - магия
+                var builder = new ContainerBuilder();
+                builder.RegisterModule(new RepositoryModule());
+                builder.RegisterServiceFabricSupport();
+                builder.RegisterStatelessService<DataService>("DataServiceType");
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(DataService).Name);
+                using (builder.Build())
+                {
+                    ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(DataService).Name);
 
+                    Thread.Sleep(Timeout.Infinite);
+                }
                 // Предотвращает завершение работы этого хост-процесса, обеспечивая непрерывную работу служб.
                 Thread.Sleep(Timeout.Infinite);
             }

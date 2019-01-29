@@ -8,7 +8,7 @@ namespace Domain.Interfaces
 {
     public interface IRepository<T> : IDisposable where T : class
     {
-        void Create(T item);
-        void Save();
+        Task CreateAsync(T item);
+        Task SaveAsync();
     }
 }

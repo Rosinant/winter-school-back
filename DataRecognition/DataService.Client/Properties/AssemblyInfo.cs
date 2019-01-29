@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Infrastructure.Business")]
+[assembly: AssemblyTitle("DataService.Client")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Infrastructure.Business")]
+[assembly: AssemblyProduct("DataService.Client")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("f6f8ffdb-b132-46b7-8897-fd21e085d5b2")]
+[assembly: Guid("148e0d1e-ac78-4aea-8fff-4a1cc2001876")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

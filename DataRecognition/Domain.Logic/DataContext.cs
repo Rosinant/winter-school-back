@@ -1,4 +1,4 @@
-﻿using DataRecognition.Domain.Model;
+﻿using Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
