@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DataRecognition.Domain.Model;
 using DataService.Interfaces;
+using Domain.Interfaces;
 using Domain.Logic;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
@@ -17,17 +18,16 @@ namespace DataService
     /// </summary>
     internal sealed class DataService : StatelessService, IDataService
     {
+        private IRepository<Passport> _repository;
+
         public DataService(StatelessServiceContext context)
             : base(context)
         { }
 
         public void SavePassport(Passport passport)
         {
-            using (var context = new PassportRepository())
-            {
-                context.Create(passport);
-                context.Save();
-            }
+            _repository.Create(passport);
+            _repository.Save();
         }
 
         /// <summary>

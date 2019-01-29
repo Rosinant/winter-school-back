@@ -10,6 +10,8 @@ namespace Domain.Logic
 {
     public class DataContext : DbContext
     {
+        public DataContext() : base("DefaultConnection")
+        { }
         public DbSet<Passport> Passports { get; set; }
     }
 }
