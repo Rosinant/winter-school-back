@@ -12,9 +12,9 @@ namespace Domain.Logic
     {
         private DataContext db;
 
-        public PassportRepository()
+        public PassportRepository(string connectionString)
         {
-            this.db = new DataContext();
+            this.db = new DataContext(connectionString);
         }
 
         public Task CreateAsync(Passport passport)
