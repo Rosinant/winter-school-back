@@ -1,39 +1,40 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
+using System.Net;
 using System.Threading.Tasks;
-using Microsoft.ServiceFabric.Services.Client;
-using Microsoft.ServiceFabric.Services.Remoting.Client;
-using DataService.Interfaces;
-using ApiService.Model;
-using Domain.Model;
-using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiService.Controllers
 {
-    class PassportController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PassportController : ControllerBase
     {
-        [Route("api/[controller]")]
-        public class ProductsController : Controller
+        // POST api/values
+        [HttpPost]
+        public async Task<ActionResult<string>> Post([FromBody] IFormFile passportPhoto)
         {
-            private readonly IDataService _passportService;
-
-            public ProductsController()
+            if (passportPhoto == null || passportPhoto.Length == 0)
             {
-                _passportService = ServiceProxy.Create<IDataService>(
-                    new Uri("fabric:/DataServiceApplication/DataService"),
-                    new ServicePartitionKey(0));
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
 
-            [HttpPost]
-            public async Task Post([FromBody] ApiPassport passport)
+            byte[] outputArray;
+            using (var stream = new MemoryStream())
             {
-                var newPassport = JsonConvert.DeserializeObject<Passport>(passport);
-
-                await _passportService.SavePassportAsync(newPassport);
+                await passportPhoto.CopyToAsync(stream);
+                outputArray = stream.ToArray();
             }
+
+            Response.StatusCode = (int)HttpStatusCode.OK;
+
+
+
+            return outputArray.Length.ToString();
+
         }
     }
 }

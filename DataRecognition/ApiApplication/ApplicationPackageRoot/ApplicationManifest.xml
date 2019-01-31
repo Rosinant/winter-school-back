@@ -5,6 +5,7 @@
                      xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
+    <Parameter Name="ApiService_ASPNETCORE_ENVIRONMENT" DefaultValue="" />
     <Parameter Name="ApiService_InstanceCount" DefaultValue="-1" />
   </Parameters>
   <!-- Импортируйте ServiceManifest из ServicePackage. Значения ServiceManifestName и ServiceManifestVersion 
@@ -13,6 +14,9 @@
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="ApiServicePkg" ServiceManifestVersion="1.0.0" />
     <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ApiService_ASPNETCORE_ENVIRONMENT]" />
+    </EnvironmentOverrides>
   </ServiceManifestImport>
   <DefaultServices>
     <!-- Приведенный ниже раздел создает экземпляры типов служб при создании экземпляра этого 
